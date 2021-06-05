@@ -55,7 +55,7 @@
     "@typescript-eslint/parser": "^4.26.0",
     "@vercel/routing-utils": "1.11.1",
     "codecov": "^3.8.2",
-    "eslint": "^7.27.0",
+    "eslint": "^7.28.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-jest": "^24.3.6",
