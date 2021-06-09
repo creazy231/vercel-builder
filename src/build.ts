@@ -99,6 +99,12 @@ export async function build (opts: BuildOptions & { config: NuxtBuilderConfig })
       'node-gyp',
       entrypointPath
     ], spawnOpts)
+
+    await execDefault('global', [
+      'add',
+      'node-pre-gyp',
+      entrypointPath
+    ], spawnOpts)
   }
 
   // Cache dir
