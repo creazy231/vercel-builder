@@ -38,7 +38,7 @@ export function exec (cmd: string, args: string[], { env, ...opts }: SpawnOption
 export function execYum (cmd: string, args: string[], { env, ...opts }: SpawnOptions = {}): Promise<ExecaReturnValue> {
   args = args.filter(Boolean)
 
-  consola.log('Running yarn', cmd, ...args)
+  consola.log('Running yum', cmd, ...args)
 
   return execa('yum', [cmd, ...args], {
     stdout: process.stdout,
