@@ -35,12 +35,31 @@ export function exec (cmd: string, args: string[], { env, ...opts }: SpawnOption
   })
 }
 
-export function execDefault (cmd: string, args: string[], { env, ...opts }: SpawnOptions = {}): Promise<ExecaReturnValue> {
+export function execYum (cmd: string, args: string[], { env, ...opts }: SpawnOptions = {}): Promise<ExecaReturnValue> {
   args = args.filter(Boolean)
 
   consola.log('Running yarn', cmd, ...args)
 
   return execa('yum', [cmd, ...args], {
+    stdout: process.stdout,
+    stderr: process.stderr,
+    preferLocal: false,
+    env: {
+      MINIMAL: '1',
+      NODE_OPTIONS: '--max_old_space_size=3000',
+      ...env
+    },
+    ...opts,
+    stdio: Array.isArray(opts.stdio) ? opts.stdio.filter(Boolean) as Array<SpawnOptions['stdio'] extends Array<infer R> ? Array<NonNullable<R>> : never> : opts.stdio
+  })
+}
+
+export function execYarn (cmd: string, args: string[], { env, ...opts }: SpawnOptions = {}): Promise<ExecaReturnValue> {
+  args = args.filter(Boolean)
+
+  consola.log('Running yarn', cmd, ...args)
+
+  return execa('yarn', [cmd, ...args], {
     stdout: process.stdout,
     stderr: process.stderr,
     preferLocal: false,
