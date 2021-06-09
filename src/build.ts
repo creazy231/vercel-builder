@@ -94,12 +94,9 @@ export async function build (opts: BuildOptions & { config: NuxtBuilderConfig })
   }
 
   if (isYarn) {
-    consola.log('Running "yum install make glibc-devel gcc patch" now...')
-    await execDefault('install', [
-      'make',
-      'glibc-devel',
-      'gcc',
-      'patch',
+    await execDefault('global', [
+      'add',
+      'node-gyp',
       entrypointPath
     ], spawnOpts)
   }
