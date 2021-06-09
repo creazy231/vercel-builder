@@ -40,7 +40,7 @@ export function execDefault (cmd: string, args: string[], { env, ...opts }: Spaw
 
   consola.log('Running yarn', cmd, ...args)
 
-  return execa('yarn', [cmd, ...args], {
+  return execa('yum', [cmd, ...args], {
     stdout: process.stdout,
     stderr: process.stderr,
     preferLocal: false,
