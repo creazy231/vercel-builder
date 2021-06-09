@@ -96,7 +96,7 @@ export async function build (opts: BuildOptions & { config: NuxtBuilderConfig })
 
   if (isYarn) {
     consola.log('Running "yum install make glibc-devel gcc patch" now...')
-    await execa('yum', ['install make glibc-devel gcc patch']);
+    await execa('yum install make glibc-devel gcc patch');
   }
 
   // Cache dir
