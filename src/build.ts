@@ -7,6 +7,7 @@ import fs from 'fs-extra'
 import resolveFrom from 'resolve-from'
 import { gte, gt } from 'semver'
 import { update as updaterc } from 'rc9'
+import execa, { ExecaReturnValue } from 'execa'
 
 import { endStep, exec, getNuxtConfig, getNuxtConfigName, globAndPrefix, MutablePackageJson, prepareNodeModules, preparePkgForProd, readJSON, startStep, validateEntrypoint } from './utils'
 import { prepareTypescriptEnvironment, compileTypescriptBuildFiles, JsonOptions } from './typescript'
@@ -95,9 +96,7 @@ export async function build (opts: BuildOptions & { config: NuxtBuilderConfig })
 
   if (isYarn) {
     consola.log('Running "yum install make glibc-devel gcc patch" now...')
-    await exec('yum', [
-      'install make glibc-devel gcc patch',
-    ], spawnOpts)
+    await execa('yum', ['install make glibc-devel gcc patch']);
   }
 
   // Cache dir
