@@ -30,7 +30,7 @@ interface NuxtBuilderConfig {
 export async function build (opts: BuildOptions & { config: NuxtBuilderConfig }): Promise<BuilderOutput> {
   const { files, entrypoint, workPath, config = {}, meta = {} } = opts
   // ---------------- Debugging context --------------
-  consola.log('Running with @nuxt/vercel-builder version', require('../package.json').version)
+  consola.log('Running with @nuxt/vercel-builder version', require('../package.json').version, 'modified by @creazy231')
 
   // ----------------- Prepare build -----------------
   startStep('Prepare build')
@@ -91,6 +91,13 @@ export async function build (opts: BuildOptions & { config: NuxtBuilderConfig })
   // Write .yarnclean
   if (isYarn && !fs.existsSync('../.yarnclean')) {
     await fs.copyFile(path.join(__dirname, '../.yarnclean'), '.yarnclean')
+  }
+
+  if (isYarn) {
+    consola.log('Running "yum install make glibc-devel gcc patch" now...')
+    await exec('yum', [
+      'install make glibc-devel gcc patch',
+    ], spawnOpts)
   }
 
   // Cache dir
